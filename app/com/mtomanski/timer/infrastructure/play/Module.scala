@@ -13,10 +13,7 @@ import com.mtomanski.timer.domain.repository.BestAvgRepository
 import com.mtomanski.timer.domain.service.SpeedcuberLocator
 import com.mtomanski.timer.infrastructure.locator.SpeedcuberClusterShardLocator
 import com.mtomanski.timer.infrastructure.projection.BestAvgProjector
-import com.mtomanski.timer.infrastructure.projection.builder.{
-  BestAvgViewBuilder,
-  PostgresBestAvgViewBuilder
-}
+import com.mtomanski.timer.infrastructure.projection.builder.{LoggerBestAvgViewBuilder, BestAvgViewBuilder, PostgresBestAvgViewBuilder}
 import com.mtomanski.timer.infrastructure.repository.PostgresBestAvgRepository
 import play.api.libs.concurrent.AkkaGuiceSupport
 import play.api.{Configuration, Environment}
@@ -35,7 +32,7 @@ class Module(environment: Environment, configuration: Configuration)
 
     bind(classOf[BestAvgRepository]).to(classOf[PostgresBestAvgRepository])
 
-    bind(classOf[BestAvgViewBuilder]).to(classOf[PostgresBestAvgViewBuilder])
+    bind(classOf[BestAvgViewBuilder]).to(classOf[LoggerBestAvgViewBuilder])
   }
 }
 
